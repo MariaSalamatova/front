@@ -1,7 +1,11 @@
 import React from "react";
+import "./Content.css";
+// import videoFile
+
+// import slideImg1
+// import slideImg2
 
 const Content = () => {
-  
   const imgs = [];
   return (
     <section className="content-grid">
@@ -26,7 +30,7 @@ const Content = () => {
 
       <section className="treiler-ver">
         <video
-          src="pictures/26 event/Version 2.6 Trailer - Folie et Dйraison _ Reverse_ 1999.mp4"
+          // src="pictures/26 event/Version 2.6 Trailer - Folie et Dйraison _ Reverse_ 1999.mp4"
           controls
         ></video>
       </section>

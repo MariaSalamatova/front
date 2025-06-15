@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header(props) {
   return (
-    <header class="top-nav">
-      <section class="auth">
+    <header className="top-nav">
+      <section className="auth">
         <button>Login / Register</button>
 
         <div id="authContainer">
@@ -21,13 +22,16 @@ function Header(props) {
           <button>Logout</button>
         </div>
       </section>
-      <section class="buttons">
-        <a href="pull counter/site.html">
+      <section className="buttons">
+        {/* <a href="pull counter/site.html">
           <button>pull counter</button>
         </a>
         <a href="forum/site.html">
           <button>forum</button>
-        </a>
+        </a> */}
+        <Link to="/">Main</Link>
+        <Link to="/forum">Forum</Link>
+        <Link to="/pull-counter">Pull counter</Link>
       </section>
     </header>
   );
