@@ -1,4 +1,5 @@
 import React from "react";
+import "./EventList.css";
 
 const EventList = () => {
   const events = [
@@ -61,7 +62,7 @@ const EventList = () => {
   ];
   return (
     <section className="recent-updates">
-      <div class="recent-updates">
+      <div className="recent-updates">
         <h2>Recently Updated</h2>
         <div className="avatars">
           <img src="pictures/26 event/Recoleta_Icon.webp" alt="Character" />

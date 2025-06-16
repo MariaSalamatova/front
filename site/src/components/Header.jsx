@@ -1,9 +1,10 @@
 import React from "react";
+import "./Header.css";
 
 function Header(props) {
   return (
-    <header class="top-nav">
-      <section class="auth">
+    <header className="top-nav">
+      <section className="auth">
         <button>Login / Register</button>
 
         <div id="authContainer">
@@ -21,13 +22,18 @@ function Header(props) {
           <button>Logout</button>
         </div>
       </section>
-      <section class="buttons">
+      <section className="buttons">
         <a href="pull counter/site.html">
           <button>pull counter</button>
         </a>
         <a href="forum/site.html">
           <button>forum</button>
         </a>
+      </section>
+            <section className="buttons">
+        <Link to="./Main">Main</Link>
+        <Link to="./Forum">Forum</Link>
+        <Link to="./PullCounter">Pull counter</Link>
       </section>
     </header>
   );
