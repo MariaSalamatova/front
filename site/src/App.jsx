@@ -22,13 +22,13 @@ const AppLayout = () => {
   const location = useLocation();
   const getBackground = () => {
     switch (location.pathname) {
-      case "/":
+      case "/Main":
         return backgroundHome;
         break;
-      case "/forum":
+      case "/Forum":
         return backgroundForum;
         break;
-      case "/pull-counter":
+      case "/PullCounter":
         return backgroundPull;
         break;
       default:
