@@ -1,39 +1,45 @@
 import React from "react";
 import "./Header.css";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./AutthContext";
 function Header(props) {
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const handlLogout = () => {
+    logout();
+    navigate("/");
+  };
   return (
     <header className="top-nav">
       <section className="auth">
-        <button>Login / Register</button>
-
-        <div id="authContainer">
-          <h2>Login Register</h2>
-          <input type="text" id="username" placeholder="Username" />
-          <input type="password" id="password" placeholder="Password" />
-          <button>Register</button>
-          <button>Login</button>
-        </div>
-
-        <div id="accountContainer">
+        {isAuthenticated ? (
+          <>
+            <h2>
+              Welcome <span id="userDisplay">{user}</span>
+            </h2>
+            <button onClick={handlLogout}>Logoutt</button>
+          </>
+        ) : (
+          <button onClick={() => navigate("/login")}>Login / Register</button>
+        )}
+        {/* <div id="accountContainer">
           <h2>
             Welcome, <span id="userDisplay"></span>!
           </h2>
-          <button>Logout</button>
-        </div>
+        </div> */}
       </section>
       <section className="buttons">
-        <a href="pull counter/site.html">
-          <button>pull counter</button>
-        </a>
-        <a href="forum/site.html">
-          <button>forum</button>
-        </a>
-      </section>
-            <section className="buttons">
-        <Link to="./Main">Main</Link>
-        <Link to="./Forum">Forum</Link>
-        <Link to="./PullCounter">Pull counter</Link>
+        <Link to="/">
+          {" "}
+          <button>Main</button>
+        </Link>
+        {/* Hide from non login user */}
+        <Link to="/Forum">
+          <button>Forum</button>
+        </Link>
+        <Link to="/PullCounter">
+          <button>Pull counter</button>
+        </Link>
       </section>
     </header>
   );

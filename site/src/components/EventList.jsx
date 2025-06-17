@@ -1,6 +1,11 @@
 import React from "react";
 import "./EventList.css";
 
+{
+  /* <img src="pictures/26 event/Recoleta_Icon.webp" alt="Character" />
+          <img src="pictures/26 event/Recoleta cube.png" alt="Psycube" />
+          <img src="pictures/26 event/Bette cube.png" alt="Psycube" /> */
+}
 const EventList = () => {
   const events = [
     {
@@ -64,11 +69,7 @@ const EventList = () => {
     <section className="recent-updates">
       <div className="recent-updates">
         <h2>Recently Updated</h2>
-        <div className="avatars">
-          <img src="pictures/26 event/Recoleta_Icon.webp" alt="Character" />
-          <img src="pictures/26 event/Recoleta cube.png" alt="Psycube" />
-          <img src="pictures/26 event/Bette cube.png" alt="Psycube" />
-        </div>
+        <div className="avatars"></div>
 
         <ul>
           {events.map((event, idx) => (
