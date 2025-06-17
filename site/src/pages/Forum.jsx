@@ -152,6 +152,21 @@ const Forum = () => {
       </div>
     </div>
   );
+      <div id="posts">
+        {posts.map((post) => (
+          <div className="post-container" key={post.id}>
+            Test
+            {post.text && <p>{post.text}</p>}
+            {renderMedia(post)}
+            <div>
+              <button onClick={() => handleEdit(post.id)}>Edit</button>
+              <button onClick={() => handleDelete(post.id)}>Delete</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Forum;
