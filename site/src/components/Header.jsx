@@ -16,7 +16,7 @@ function Header(props) {
         {isAuthenticated ? (
           <>
             <h2>
-              Welcome <span id="userDisplay">{user}</span>
+            <span id="userDisplay">{user}</span>
             </h2>
             <button onClick={handlLogout}>Log out</button>
           </>
