@@ -1,5 +1,8 @@
 import React from "react";
 import "./EventList.css";
+import Picture1 from "../assets/pictures/26 event/Recoleta_Icon.webp";
+import Picture2 from "../assets/pictures/26 event/Recoleta cube.png";
+import Picture3 from "../assets/pictures/26 event/Bette cube.png";
 
 const EventList = () => {
   const events = [
@@ -65,9 +68,12 @@ const EventList = () => {
       <div className="recent-updates">
         <h2>Recently Updated</h2>
         <div className="avatars">
-          <img src="pictures/26 event/Recoleta_Icon.webp" alt="Character" />
+         {/*<img src="pictures/26 event/Recoleta_Icon.webp" alt="Character" />
           <img src="pictures/26 event/Recoleta cube.png" alt="Psycube" />
-          <img src="pictures/26 event/Bette cube.png" alt="Psycube" />
+          <img src="pictures/26 event/Bette cube.png" alt="Psycube" /> */}
+          <img src={Picture1}/>
+          <img src={Picture2}/>
+          <img src= {Picture3}/>
         </div>
 
         <ul>

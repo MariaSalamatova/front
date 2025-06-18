@@ -1,0 +1,28 @@
+.h1 {
+  margin: 0 0 10px;
+  color: #ffdca0;
+  font-size: 1rem;
+  font-family: "Palatino Linotype", serif;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.buttons button {
+  background: rgba(0, 0, 0, 0.6);
+  color: #f3f3f3;
+  border: 1px solid #777;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttons button:hover {
+  background: #5c4a3c;
+}

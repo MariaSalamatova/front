@@ -21,7 +21,7 @@
 
 .buttons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
   padding: 20px;
 }
@@ -39,4 +39,8 @@
 
 .buttons button:hover {
   background: #5c4a3c;
+}
+
+a {
+  color: white;
 }

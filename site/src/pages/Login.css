@@ -1,0 +1,54 @@
+.h2 {
+  margin: 0 0 10px;
+  color: #ffdca0;
+  font-size: 1rem;
+  font-family: "Palatino Linotype", serif;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f0f0f0;
+}
+
+form {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#authContainer {
+  background-color: rgba(20, 20, 20, 0.8);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#authContainer input {
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#authContainer button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+#authContainer button:hover {
+  background-color: #5c4a3c;
+}

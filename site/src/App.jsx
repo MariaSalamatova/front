@@ -13,6 +13,9 @@ import Forum from "./pages/Forum";
 import PullCounter from "./pages/PullCounter";
 import NotFonund from "./pages/NotFound";
 import Main from "./pages/Main";
+import Login from "./pages/Login";
+import { AuthProvider } from "./components/AuthContext";
+import PrivateRouter from "./components/PrivateRouter";
 
 import backgroundHome from "./assets/pictures/26 event/background.jpg";
 import backgroundPull from "./assets/pictures/26 event/pull.jpg";
@@ -45,12 +48,22 @@ const AppLayout = () => {
     <>
       <Header></Header>
       <Routes>
-        <Route path="/Main" element={<Main></Main>}></Route>
-
-        <Route path="/Forum" element={<Forum></Forum>}></Route>
+        <Route path="/" element={<Main></Main>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/Forum"
+          element={
+            <PrivateRouter>
+              <Forum></Forum>
+            </PrivateRouter>
+          }
+         > </Route>
         <Route
           path="/PullCounter"
-          element={<PullCounter></PullCounter>}
+          element={
+            <PrivateRouter>
+              <PullCounter></PullCounter>
+            </PrivateRouter>
+          }
         ></Route>
         <Route path="/*" element={<NotFonund></NotFonund>}></Route>
       </Routes>
@@ -61,11 +74,12 @@ const AppLayout = () => {
 function App() {
   return (
     <>
+    <AuthProvider>
       <Router>
         <AppLayout></AppLayout>
+        <Footer></Footer>
       </Router>
-
-      <Footer></Footer>
+    </AuthProvider>
     </>
   );
 }
