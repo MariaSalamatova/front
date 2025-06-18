@@ -121,6 +121,7 @@ textarea {
   border: 1px solid #777;
   border-radius: 6px;
   min-width: 300px;
+  margin-bottom: 8px;
 }
 
 #mediaInput {

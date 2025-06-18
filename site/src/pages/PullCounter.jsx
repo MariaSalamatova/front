@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./PullCounter.css";
+
 import Banner1 from "../assets/pictures/26 event/banners/Liang Yue banner.jpg";
 import Banner2 from "../assets/pictures/26 event/banners/Recoleta banner.jpg";
 import Banner3 from "../assets/pictures/26 event/banners/Tooth Fairy banner.jpg";
@@ -70,6 +71,7 @@ const PullCounter = () => {
 
   return <div>
       <section className="enter-data">
+        <button id="open-form">Enter pull result</button>
 
     <div id="pull-form">
       <label for="banner-select">Select Banner:</label><br />
@@ -96,7 +98,7 @@ const PullCounter = () => {
 
   <section className="banner-list">
 
-  <ul>
+ <ul>
       <li>
         <h2>Limited banner</h2>
         <img src="Banner1" />
@@ -126,40 +128,40 @@ const PullCounter = () => {
              <img src="Banner5" />
             <div className="characters" id="chars-ripples"></div>
       </li>
-    </ul>
+    </ul> 
 
 
-  {/*  <ul>
+{/* <ul>
       <li>
         <h2>Limited banner</h2>
-        <img src="banners/Liang Yue banner.jpg" alt="banner" />
+        <img src="../assets/26 event/banners/Liang Yue banner.jpg" alt="banner" />
         <div className="characters" id="chars-limited"></div>
       </li>
 
       <li>
         <h2>Event banner</h2>
-        <img src="banners/Recoleta banner.jpg" alt="banner" />
+        <img src="../assets/26 event/banners/Recoleta banner.jpg" alt="banner" />
         <div className="characters" id="chars-event"></div>
       </li>
 
       <li>
         <h2>Rerun banner</h2>
-        <img src="banners/Tooth Fairy banner.jpg" alt="banner" />
+        <img src="../assets/26 event/banners/Tooth Fairy banner.jpg" alt="banner" />
         <div className="characters" id="chars-rerun"></div>
       </li>
 
       <li>
         <h2>Yearing of the water</h2>
-        <img src="banners/yearing of the water.png" alt="banner" />
+        <img src="../assets/26 event/banners/yearing of the water.png" alt="banner" />
         <div className="characters" id="chars-yearing"></div>
       </li>
 
       <li>
         <h2>Ripples on the water</h2>
-             <img src="banners/ripples on the water.jpg" alt="banner" />
+             <img src="../assets/26 event/banners/ripples on the water.jpg" alt="banner" />
             <div className="characters" id="chars-ripples"></div>
       </li>
-    </ul>*/}
+    </ul> */}
   </section>
   </div>;
 };

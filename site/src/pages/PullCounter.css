@@ -4,6 +4,21 @@
   margin: 40px 0;
 }
 
+.enter-data button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #f3f3f3;
+  border: 1px solid #777;
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.enter-data button:hover {
+  background-color: rgba(50, 50, 50, 0.8);
+}
+
 #pull-form {
   background-color: rgba(30, 30, 30, 0.7);
   border: 1px solid #555;
@@ -27,11 +42,24 @@
   flex-wrap: wrap;
   gap: 20px;
   margin-bottom: 20px;
+  justify-content: center;
 }
 
 #pull-form .inputs-row {
-  flex: 1 1 200px;
-  min-width: 200px;
+  flex: 1 1 auto;
+  min-width: 180px;
+  max-width: 250;
+}
+
+@media (max-width: 600px) {
+  #pull-form .inputs-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #pull-form .inputs-row > * {
+    max-width: 100%;
+  }
 }
 
 #pull-form select,
