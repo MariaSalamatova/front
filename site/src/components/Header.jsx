@@ -12,29 +12,33 @@ function Header(props) {
   };
   return (
     <header className="top-nav">
+      <section className="buttons">
+        <Link to="/">
+          {" "}
+          <button>Main</button>
+        </Link>
+        {isAuthenticated && (
+          <>
+            <Link to="/Forum">
+              <button>Forum</button>
+            </Link>
+            <Link to="/PullCounter">
+              <button>Pull counter</button>
+            </Link>
+          </>
+        )}
+      </section>
       <section className="auth">
         {isAuthenticated ? (
           <>
             <h2>
-            <span id="userDisplay">{user}</span>
+              <span id="userDisplay">{user}</span>
             </h2>
             <button onClick={handlLogout}>Log out</button>
           </>
         ) : (
           <button onClick={() => navigate("/login")}>Login / Register</button>
         )}
-      </section>
-            <section className="buttons">
-               <Link to="/">
-          {" "}
-          <button>Main</button>
-        </Link>
-        <Link to="/Forum">
-          <button>Forum</button>
-        </Link>
-        <Link to="/PullCounter">
-          <button>Pull counter</button>
-        </Link>
       </section>
     </header>
   );

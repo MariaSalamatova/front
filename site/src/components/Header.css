@@ -1,11 +1,16 @@
 .top-nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgba(20, 20, 20, 0.8);
   padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
-
+.auth {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+}
 .top-nav .auth button {
   background: transparent;
   border: 1px solid #aaa;

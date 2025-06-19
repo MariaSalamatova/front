@@ -1,16 +1,16 @@
-import React, { userRef, useState, useEffect, useRef }  from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Forum.css";
 
 const Forum = () => {
   const postInputRef = useRef(null);
   const mediaInputRef = useRef(null);
   const [preview, setPreview] = useState(null);
-  const [posts, setPost] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [editId, setEditId] = useState(null);
   useEffect(() => {
     const stored = localStorage.getItem("posts");
     if (stored) {
-      setPost(JSON.parse(stored));
+      setPosts(JSON.parse(stored));
     }
   }, []);
   useEffect(() => {
@@ -32,6 +32,7 @@ const Forum = () => {
     }
     const fileType = file.type;
     const url = URL.createObjectURL(file);
+
     let media;
     if (fileType.startsWith("image/")) {
       media = <img src={url} alt="perview" />;
@@ -46,25 +47,26 @@ const Forum = () => {
   const createPost = () => {
     const postText = postInputRef.current.value.trim();
     const file = mediaInputRef.current.files[0];
-    if (!postText && !file) return;
+    if (!postText && !file && editId === null) return;
 
     const fileType = file?.type;
     const url = file ? URL.createObjectURL(file) : null;
     let mediaType = null;
 
-    if (fileType.startsWith("image/")) {
-      mediaType = "image";
-    } else if (fileType.startsWith("video/")) {
-      mediaType = "video";
-    } else if (fileType.startsWith("audio/")) {
-      mediaType = "audio";
-    }
+    if (fileType?.startsWith("image/")) mediaType = "image";
+    else if (fileType?.startsWith("video/")) mediaType = "video";
+    else if (fileType?.startsWith("audio/")) mediaType = "audio";
 
     if (editId !== null) {
-      setPost(
+      setPosts(
         posts.map((post) =>
           post.id === editId
-            ? { ...post, text: postText, fileType: mediaType, fileUrl: url }
+            ? {
+                ...post,
+                text: postText,
+                fileType: file ? mediaType : post.fileType,
+                fileUrl: file ? url : post.fileUrl,
+              }
             : post
         )
       );
@@ -76,7 +78,7 @@ const Forum = () => {
         fileType: mediaType,
         fileUrl: url,
       };
-      setPost([newPost, ...posts]);
+      setPosts([newPost, ...posts]);
     }
     postInputRef.current.value = "";
     mediaInputRef.current.value = "";
@@ -93,7 +95,7 @@ const Forum = () => {
 
   const handleDelete = (postId) => {
     const filtered = posts.filter((p) => p.id !== postId);
-    setPost(filtered);
+    setPosts(filtered);
   };
 
   const renderMedia = (post) => {
@@ -140,7 +142,6 @@ const Forum = () => {
       <div id="posts">
         {posts.map((post) => (
           <div className="post-container" key={post.id}>
-            Test
             {post.text && <p>{post.text}</p>}
             {renderMedia(post)}
             <div>
