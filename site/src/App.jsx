@@ -51,15 +51,23 @@ const AppLayout = () => {
       <Routes>
         <Route path="/" element={<Main></Main>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/Forum"
+        <Route
+          path="/Forum"
           element={
             <PrivateRouter>
               <Forum></Forum>
             </PrivateRouter>
           }
-         > </Route>
+        >
+          {" "}
+        </Route>
         <Route
           path="/PullCounter"
+          element={
+            <PrivateRouter>
+              <PullCounter></PullCounter>
+            </PrivateRouter>
+          }
           element={
             <PrivateRouter>
               <PullCounter></PullCounter>
@@ -75,12 +83,18 @@ const AppLayout = () => {
 function App() {
   return (
     <>
-    <AuthProvider>
-      <Router>
-        <AppLayout></AppLayout>
-        <Footer></Footer>
-      </Router>
-    </AuthProvider>
+      <AuthProvider>
+        <Router>
+          <AppLayout></AppLayout>
+          <Footer></Footer>
+        </Router>
+      </AuthProvider>
+      <AuthProvider>
+        <Router>
+          <AppLayout></AppLayout>
+          <Footer></Footer>
+        </Router>
+      </AuthProvider>
     </>
   );
 }

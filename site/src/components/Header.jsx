@@ -10,6 +10,12 @@ function Header(props) {
     logout();
     navigate("/");
   };
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const handlLogout = () => {
+    logout();
+    navigate("/");
+  };
   return (
     <header className="top-nav">
       <section className="buttons">

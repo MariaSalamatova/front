@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./NotFound.css";
 
 const NotFound = () => {
@@ -7,7 +7,7 @@ const NotFound = () => {
     <div>
       <h1>404 page</h1>
       <section className="buttons">
-     <Link to="/">Main</Link>
+        <Link to="/">Main</Link>
       </section>
     </div>
   );
