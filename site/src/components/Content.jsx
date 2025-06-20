@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./Content.css";
 import VideoFile from "../assets/pictures/26 event/Version 2.6 Trailer - Folie et Dйraison _ Reverse_ 1999.mp4";
 import slideImg1 from "../assets/pictures/26 event/Dialogues behind bars.jpg";
-import slideImg2 from "../assets/pictures/26 event/Ruinas Gloriosas y Directrices de Metáforas.jpg";
+import slideImg2 from "../assets/pictures/26 event/The answering machine the butterfly and the literary critic.jpg";
 import slideImg3 from "../assets/pictures/26 event/wilderness pack.jpg";
 
 const Content = () => {

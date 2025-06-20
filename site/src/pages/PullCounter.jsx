@@ -2,12 +2,10 @@ import React, {useState, useEffect} from "react";
 import "./PullCounter.css";
 
 import Banner1 from "../assets/pictures/26 event/banners/Liang Yue banner.jpg";
-import Banner2 from "../assets/pictures/26 event/banners/Recoleta banner.jpg";
+import Banner2 from "../assets/pictures/26 event/banners/Aleph banner.jpg";
 import Banner3 from "../assets/pictures/26 event/banners/Tooth Fairy banner.jpg";
 import Banner4 from "../assets/pictures/26 event/banners/yearing of the water.png";
 import Banner5 from "../assets/pictures/26 event/banners/ripples on the water.jpg";
-
-const PullCounter = () => {
 
   const allCharacters = [
     "Druvis III",
@@ -56,114 +54,139 @@ const PullCounter = () => {
     "Liang Yue",
   ];
 
-  const limitedOnly = new Set([
-    "Jiu Niangzi",
-    "Lucy",
-    "Anjo Nala",
-    "Liang Yue",
-  ]);
+const limitedOnly = new Set(["Jiu Niangzi", "Lucy", "Anjo Nala", "Liang Yue"]);
+const PullCounter = () => {
+  const [banner, setBanner] = useState("");
+  const [character, setCharacter] = useState("");
+  const [pullNumber, setPullNumber] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
-  const bannerCharacters = {
+  const [results, setResults] = useState({
     limited: [],
     event: [],
     rerun: [],
+    yearing: [],
+    ripples: [],
+  });
+
+  const getFilteredCharacters = () => {
+    if (banner === "limited") return allCharacters;
+    if (banner === "") return [];
+    return allCharacters.filter((c) => !limitedOnly.has(c));
   };
 
-  return <div>
+  const handleAddPull = () => {
+    const pull = parseInt(pullNumber);
+    if (!banner || !character || isNaN(pull) || pull < 1) {
+      return alert("fill all blanks");
+    }
+    const newEntry = {
+      name: character,
+      pull,
+    };
+    setResults((prev) => ({
+      ...prev,
+      [banner]: [...(prev[banner] || []), newEntry],
+    }));
+
+    setCharacter("");
+    setPullNumber("");
+  };
+  const getColor = (pull) => {
+    if (pull <= 40) return "green";
+    if (pull <= 59) return "orange";
+    return "red";
+  };
+
+  const bannerImages = {
+    limited: Banner1,
+    event: Banner2,
+    rerun: Banner3,
+    yearing: Banner4,
+    ripples: Banner5,
+  };
+
+  return(
+  <div>
       <section className="enter-data">
-        <button id="open-form">Enter pull result</button>
+        <button id="open-form" onClick={() => setShowForm(!showForm)}>
+          Enter pull result
+        </button>
+        {showForm && (
+          <div id="pull-form">
+            <label for="banner-select">Select Banner:</label>
+            <br />
+            <select
+              id="banner-select"
+              value={banner}
+              onChange={(e) => setBanner(e.target.value)}
+            >
+              <option value="">-- Choose Banner --</option>
+              <option value="limited">Limited banner</option>
+              <option value="event">Event banner</option>
+              <option value="rerun">Rerun banner</option>
+              <option value="yearing">Yearing of the water</option>
+              <option value="ripples">Ripples on the water</option>
+            </select>
+            <br />
+            <br />
 
-    <div id="pull-form">
-      <label for="banner-select">Select Banner:</label><br />
-      <select id="banner-select">
-        <option value="">-- Choose Banner --</option>
-        <option value="limited">Limited banner</option>
-        <option value="event">Event banner</option>
-        <option value="rerun">Rerun banner</option>
-        <option value="yearing">Yearing of the water</option>
-        <option value="ripples">Ripples on the water</option>
-      </select><br /><br />
+            <label for="character-select">Select Character:</label>
+            <br />
+            <select
+              id="character-select"
+              value={character}
+              onChange={(e) => setCharacter(e.target.value)}
+            >
+              <option value="">-- Choose Character --</option>
+              {getFilteredCharacters().map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+            <br />
+            <br />
 
-      <label for="character-select">Select Character:</label><br />
-      <select id="character-select">
-        <option value="">-- Choose Character --</option>
-      </select><br /><br />
+            <label for="pull-number">Enter Pull Number:</label>
+            <br />
+            <input
+              type="number"
+              id="pull-number"
+              min="1"
+              max="100"
+              value={pullNumber}
+              onChange={(e) => setPullNumber(e.target.value)}
+            />
+            <br />
+            <br />
 
-      <label for="pull-number">Enter Pull Number:</label><br />
-      <input type="number" id="pull-number" min="1" max="100" /><br /><br />
+            <button id="add-pull" onClick={handleAddPull}>
+              Add
+            </button>
+          </div>
+        )}
+      </section>
 
-      <button id="add-pull">Add</button>
+       <section>
+        <ul className="banner-list">
+          {Object.keys(bannerImages).map((b) => (
+            <li key={b}>
+              <h2>{b.charAt(0).toUpperCase() + b.slice(1)} baner</h2>
+              <img src={bannerImages[b]} alt={`${b} banner`} />
+              <div className="characters">
+                {results[b].map((item, i) => (
+                  <div key={i} style={{ color: getColor(item.pull) }}>
+                    {item.name} - pull {item.pull}
+                  </div>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
-  </section>
-
-  <section className="banner-list">
-
- <ul>
-      <li>
-        <h2>Limited banner</h2>
-        <img src="Banner1" />
-        <div className="characters" id="chars-limited"></div>
-      </li>
-
-      <li>
-        <h2>Event banner</h2>
-        <img src="Banner2" />
-        <div className="characters" id="chars-event"></div>
-      </li>
-
-      <li>
-        <h2>Rerun banner</h2>
-        <img src="Banner3" />
-        <div className="characters" id="chars-rerun"></div>
-      </li>
-
-      <li>
-        <h2>Yearing of the water</h2>
-        <img src="Banner4" />
-        <div className="characters" id="chars-yearing"></div>
-      </li>
-
-      <li>
-        <h2>Ripples on the water</h2>
-             <img src="Banner5" />
-            <div className="characters" id="chars-ripples"></div>
-      </li>
-    </ul> 
-
-
-{/* <ul>
-      <li>
-        <h2>Limited banner</h2>
-        <img src="../assets/26 event/banners/Liang Yue banner.jpg" alt="banner" />
-        <div className="characters" id="chars-limited"></div>
-      </li>
-
-      <li>
-        <h2>Event banner</h2>
-        <img src="../assets/26 event/banners/Recoleta banner.jpg" alt="banner" />
-        <div className="characters" id="chars-event"></div>
-      </li>
-
-      <li>
-        <h2>Rerun banner</h2>
-        <img src="../assets/26 event/banners/Tooth Fairy banner.jpg" alt="banner" />
-        <div className="characters" id="chars-rerun"></div>
-      </li>
-
-      <li>
-        <h2>Yearing of the water</h2>
-        <img src="../assets/26 event/banners/yearing of the water.png" alt="banner" />
-        <div className="characters" id="chars-yearing"></div>
-      </li>
-
-      <li>
-        <h2>Ripples on the water</h2>
-             <img src="../assets/26 event/banners/ripples on the water.jpg" alt="banner" />
-            <div className="characters" id="chars-ripples"></div>
-      </li>
-    </ul> */}
-  </section>
-  </div>;
+  );
 };
 
 export default PullCounter;
