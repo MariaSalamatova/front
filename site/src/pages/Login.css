@@ -1,15 +1,16 @@
-.h2 {
+h2 {
   margin: 0 0 10px;
-  color: #ffdca0;
-  font-size: 1rem;
-  font-family: "Palatino Linotype", serif;
+  color: #ecdbc2;
+  font-size: -100%;
+  font-family: "Roboto", serif;
+  text-align: center;
 }
 
 body, html {
   height: 100%;
   margin: 0;
   font-family: sans-serif;
-  background-color: #f0f0f0;
+  background-color: #1f1f1f;
 }
 
 form {
@@ -20,10 +21,10 @@ form {
 }
 
 #authContainer {
-  background-color: rgba(20, 20, 20, 0.8);
+  background-color: #ecdbc2;
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px #aea28f;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +41,7 @@ form {
 #authContainer button {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #444;
+  background-color: #806c4f;
   color: white;
   border: none;
   border-radius: 6px;

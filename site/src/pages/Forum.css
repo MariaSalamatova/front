@@ -94,7 +94,7 @@ textarea {
 
 .post-container p {
   margin: 0;
-  color: #f0e8d8;
+  color: #c7c6c5;
 }
 
 .post-container img,
@@ -103,6 +103,21 @@ textarea {
   display: block;
   margin-top: 10px;
   max-width: 50%;
+}
+
+.post-container button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: 1px solid #777;
+  padding: 1px 5px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.post-container button:hover {
+  background-color: rgba(50, 50, 50, 0.8);
 }
 
 #inputRow {
@@ -133,7 +148,7 @@ textarea {
 
 #sendButton {
   background-color: rgba(0, 0, 0, 0.6);
-  color: #f3f3f3;
+  color: #ffffff;
   border: 1px solid #777;
   padding: 10px 20px;
   border-radius: 6px;
