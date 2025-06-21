@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../components/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-function Login() {
-  const [email, setEmail] = useState("");
+function Register() {
+  const [username, setUserName] = useState("");
+  const [email, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (username.length < 2) {
+      return setError("Username must be 2 or more characters");
+    }
     if (!email.includes("@")) {
       return setError("Invalid email");
     }
@@ -21,41 +24,43 @@ function Login() {
     // navigate("/");
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/auth/login`,
+        `${import.meta.env.VITE_API_URL}/auth/register`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify({ username, email, password }),
         }
       );
-
-      if (!response.ok) {
+      if (response.status === 201) {
+        navigate("/login");
+      } else {
         const msg = await response.text();
-        return setError(msg || "Login failed");
+        setError(`Registration failed: ${msg}`);
       }
-
-      const data = await response.json();
-      localStorage.setItem("token", data.token);
-      login(data.user.username, data.token);
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-      setError("Something went wrong. Try again");
-    }
+    } catch (err) {}
   };
+
   return (
     <>
-      <h2>Login page/ Register</h2>
+      <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div id="authContainer">
           <input
+            value={username}
+            type="text"
+            id="username"
+            placeholder="Username"
+            onChange={(e) => setUserName(e.target.value)}
+          />
+          <br />
+          <input
             value={email}
             type="email"
-            id="Email"
+            id="email"
             placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setUserEmail(e.target.value)}
           />
           <br />
           <br />
@@ -68,13 +73,7 @@ function Login() {
           />
           <br />
           <br />
-          <button type="submit">Login</button>
-          <br />
-          <br />
-
-          <div className="register-block">
-            Don't have account? <Link to="/register">Register here</Link>
-          </div>
+          <button type="submit">Register</button>
         </div>
       </form>
       {error && (
@@ -86,4 +85,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

@@ -12,21 +12,8 @@ function Header(props) {
   };
   return (
     <header className="top-nav">
-       <section className="auth">
-        {isAuthenticated ? (
-          <>
-            <h2>
-            <span id="userDisplay">{user}</span>
-            </h2>
-            <button onClick={handlLogout}>Log out</button>
-          </>
-        ) : (
-          <button onClick={() => navigate("/login")}>Login / Register</button>
-        )}
-      </section>
-
       <section className="buttons">
-               <Link to="/">
+        <Link to="/">
           {" "}
           <button>Main</button>
         </Link>
@@ -36,7 +23,21 @@ function Header(props) {
         <Link to="/PullCounter">
           <button>Pull counter</button>
         </Link>
-     </section>
+      </section>
+      <section className="auth">
+        {isAuthenticated ? (
+          <>
+            <h2>
+              <span id="userDisplay">
+                Hello user: <strong>{user?.username}</strong>
+              </span>
+            </h2>
+            <button onClick={handlLogout}>Log out</button>
+          </>
+        ) : (
+          <button onClick={() => navigate("/login")}>Login / Register</button>
+        )}
+      </section>
     </header>
   );
 }

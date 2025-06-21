@@ -14,6 +14,7 @@ import PullCounter from "./pages/PullCounter";
 import NotFonund from "./pages/NotFound";
 import Main from "./pages/Main";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import { AuthProvider } from "./components/AuthContext";
 import PrivateRouter from "./components/PrivateRouter";
 
@@ -51,13 +52,17 @@ const AppLayout = () => {
       <Routes>
         <Route path="/" element={<Main></Main>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/Forum"
+        <Route path="/register" element={<Register></Register>}></Route>
+        <Route
+          path="/Forum"
           element={
             <PrivateRouter>
               <Forum></Forum>
             </PrivateRouter>
           }
-         > </Route>
+        >
+          {" "}
+        </Route>
         <Route
           path="/PullCounter"
           element={
@@ -75,12 +80,12 @@ const AppLayout = () => {
 function App() {
   return (
     <>
-    <AuthProvider>
-      <Router>
-        <AppLayout></AppLayout>
-        <Footer></Footer>
-      </Router>
-    </AuthProvider>
+      <AuthProvider>
+        <Router>
+          <AppLayout></AppLayout>
+          <Footer></Footer>
+        </Router>
+      </AuthProvider>
     </>
   );
 }
